@@ -1,4 +1,4 @@
-import mongoose, { Document, Schema, model } from "mongoose";
+import { Schema, model } from "mongoose";
 import { Ipokemon } from "../interfaces/interfaces";
 
 const pokemonSchema = new Schema({

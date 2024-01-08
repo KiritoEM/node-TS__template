@@ -4,6 +4,7 @@ import ConnectDB from "../config/db-config";
 import cors from "cors";
 import compression from "compression";
 import morgan from "morgan";
+import pokemonRouter from "./../routes/pokemon.routes";
 
 dotenv.config();
 const app: Application = express();
@@ -23,6 +24,6 @@ app.get("/home", (req: Request, res: Response) => {
 });
 
 // App routes
-app.use("/pokemon", require("./../routes/pokemon.routes"));
+app.use("/pokemon", pokemonRouter);
 
 export default app;

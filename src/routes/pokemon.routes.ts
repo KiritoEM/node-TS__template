@@ -1,5 +1,5 @@
 import express from "express";
-import pokemonController from "./../controller/pokemon.controller";
+import pokemonController from "../controller/pokemon.controller";
 
 const router = express.Router();
 
