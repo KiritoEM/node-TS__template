@@ -15,4 +15,7 @@ router.get("/get", pokemonController.getAllPokemon);
 //route pour récupérer tous les  pokemons
 router.get("/get-pokemon/:pokemonID", pokemonController.getPokemonByID);
 
+//route pour supprimer tous les  pokemons
+router.delete("/delete/:pokemonID", pokemonController.removePokemon);
+
 export default router;

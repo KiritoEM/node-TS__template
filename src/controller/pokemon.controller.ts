@@ -66,7 +66,7 @@ class PokemonController {
     try {
       const { pokemonID } = req.params;
       console.log(pokemonID);
-      
+
       let pokemon = await pokemonService.readPokemonByID(pokemonID);
 
       if (pokemon) {
@@ -78,6 +78,27 @@ class PokemonController {
         res
           .status(500)
           .json({ message: "Échec de la récupération d'un pokemon" });
+      }
+    } catch (err) {
+      console.error(err);
+      throw err;
+    }
+  }
+
+  async removePokemon(req: Request, res: Response) {
+    try {
+      const { pokemonID } = req.params;
+
+      let deletedPokemon = await pokemonService.deletePokemon(pokemonID);
+
+      if (deletedPokemon === true) {
+        res.status(200).json({
+          message: "pokemon supprimé avec succés",
+        });
+      } else {
+        res
+          .status(500)
+          .json({ message: "Échec de la suppression d'un pokemon" });
       }
     } catch (err) {
       console.error(err);

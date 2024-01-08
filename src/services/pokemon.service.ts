@@ -21,6 +21,15 @@ class pokemonService {
   static async readPokemonByID(id: string): Promise<Ipokemon[]> {
     return await pokemon.findById(id);
   }
+
+  static async deletePokemon(id: string): Promise<boolean> {
+    let response = await pokemon.findByIdAndDelete(id);
+    if (response) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 }
 
 export default pokemonService;
