@@ -18,6 +18,27 @@ class PokemonController {
       throw err;
     }
   }
+
+  async modifyPokemon(req: Request, res: Response) {
+    try {
+      const { pokemonID } = req.params;
+      let updatedPokemon = await pokemonService.updatePokemon(
+        pokemonID,
+        req.body
+      );
+
+      if (updatedPokemon) {
+        res
+          .status(200)
+          .json({ message: "Pokemon modifié avec succès", updatedPokemon });
+      } else {
+        res.status(500).json({ message: "Échec de la modification du Pokémon" });
+      }
+    } catch (err) {
+      console.error(err);
+      throw err;
+    }
+  }
 }
 
-export default new PokemonController;
+export default new PokemonController();

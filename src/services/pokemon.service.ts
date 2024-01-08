@@ -6,6 +6,13 @@ class pokemonService {
     const newPokemon = new pokemon({ ...pokemonData });
     return newPokemon.save();
   }
+
+  static updatePokemon(
+    id: string,
+    updateData: Ipokemon
+  ): Promise<Ipokemon | null> {
+    return pokemon.findByIdAndUpdate(id, updateData, { new: true });
+  }
 }
 
 export default pokemonService;
