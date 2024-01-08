@@ -32,7 +32,52 @@ class PokemonController {
           .status(200)
           .json({ message: "Pokemon modifié avec succès", updatedPokemon });
       } else {
-        res.status(500).json({ message: "Échec de la modification du Pokémon" });
+        res
+          .status(500)
+          .json({ message: "Échec de la modification du Pokémon" });
+      }
+    } catch (err) {
+      console.error(err);
+      throw err;
+    }
+  }
+
+  async getAllPokemon(req: Request, res: Response) {
+    try {
+      let AllPokemon = await pokemonService.readPokemon();
+
+      if (AllPokemon) {
+        res.status(200).json({
+          message: "Tous les pokemon récupéré avec succés",
+          AllPokemon,
+        });
+      } else {
+        res
+          .status(500)
+          .json({ message: "Échec de la récupération de tous les pokemons" });
+      }
+    } catch (err) {
+      console.error(err);
+      throw err;
+    }
+  }
+
+  async getPokemonByID(req: Request, res: Response) {
+    try {
+      const { pokemonID } = req.params;
+      console.log(pokemonID);
+      
+      let pokemon = await pokemonService.readPokemonByID(pokemonID);
+
+      if (pokemon) {
+        res.status(200).json({
+          message: "pokemon récupéré avec succés",
+          pokemon,
+        });
+      } else {
+        res
+          .status(500)
+          .json({ message: "Échec de la récupération d'un pokemon" });
       }
     } catch (err) {
       console.error(err);

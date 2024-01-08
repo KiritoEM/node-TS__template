@@ -13,6 +13,14 @@ class pokemonService {
   ): Promise<Ipokemon | null> {
     return pokemon.findByIdAndUpdate(id, updateData, { new: true });
   }
+
+  static readPokemon(): Promise<Ipokemon[]> {
+    return pokemon.find();
+  }
+
+  static async readPokemonByID(id: string): Promise<Ipokemon[]> {
+    return await pokemon.findById(id);
+  }
 }
 
 export default pokemonService;
